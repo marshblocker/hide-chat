@@ -1,8 +1,20 @@
 #body {
     min-width: 300px;
     flex-flow: column nowrap;
+    font-size: medium;
+}
+
+#hidden-chats {
+    min-height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
 }
 
 #submit-form {
+    flex-flow: column nowrap;
+}
+
+#add {
     flex-flow: row nowrap;
+    margin-bottom: 30px;
 }
