@@ -1,3 +1,5 @@
+const MAX_INTERVAL_ROUNDS = 120;
+
 window.addEventListener(
 	'load',
 	() => {
@@ -5,6 +7,7 @@ window.addEventListener(
 			.get(['names'])
 			.then((res) => {
 				const names = [...res.names];
+                let round = 1;
 
 				let jsInitCheckTimer = setInterval(() => {
 					let spans = document.getElementsByTagName('span');
@@ -17,6 +20,12 @@ window.addEventListener(
                             toggleChatVisibility(names[i], spans, true);
                         }
 					}
+
+                    round++;
+                    // Maybe the list of names does not match any span in the DOM.
+                    if (round > MAX_INTERVAL_ROUNDS) {
+                        clearInterval(jsInitCheckTimer);
+                    }
 				}, 500);
 			})
 			.catch((err) => console.log(err));
@@ -31,9 +40,6 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 
         const newNamesToHide = newNames.filter(newName => !oldNames.includes(newName));
         const newNamesToShow = oldNames.filter(oldName => !newNames.includes(oldName));
-
-        console.log('hide: ', newNamesToHide);
-        console.log('show: ', newNamesToShow);
 
         let spans = document.getElementsByTagName('span');
         spans = [...spans];
