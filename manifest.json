@@ -16,5 +16,8 @@
                 "https://www.messenger.com/t/*"
             ]
         }
-    ]
+    ],
+    "background": {
+        "service_worker": "scripts/service_worker.js"
+    }
 }
