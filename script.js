@@ -8,7 +8,6 @@ class HiddenChatsList {
         this.get()
             .then(names => {
                 this.names = names || [];
-                console.log('names: ', this.names);
                 this.put();
 
                 this.updateNamesBtn = document.getElementById('add-chat-name');
@@ -23,6 +22,15 @@ class HiddenChatsList {
                     this.clearNames()
                         .then(removedNames => console.log(removedNames))
                         .catch(err => console.log(err));
+                }, false);
+
+                let textInputEl = document.getElementById('chat-name');
+                textInputEl.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        this.updateNames()
+                            .then(newName => console.log(newName))
+                            .catch(err => console.log(err));
+                    }
                 }, false);
             })
             .catch(err => { throw err });
@@ -40,8 +48,6 @@ class HiddenChatsList {
         while (this.list.firstChild !== null) {
             this.list.removeChild(this.list.firstChild);
         }
-
-        console.log(this.names);
 
         this.names
             .map(name => {
@@ -72,7 +78,6 @@ class HiddenChatsList {
 
             let newName = textInput.value;
             textInput.value = '';
-            console.log('newName: ', newName);
             this.names.push(newName);
             this.put();
             this.store()
