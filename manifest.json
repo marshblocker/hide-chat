@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Hide Chat",
+    "permissions": ["storage"],
+    "description": "A web extension that can hide specific chats in Messenger.",
+    "version": "1.0.0",
+    "action":{
+        "default_title": "Hide Chat",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "js": ["scripts/content.js"],
+            "matches": [
+                "https://www.messenger.com/",
+                "https://www.messenger.com/t/*"
+            ]
+        }
+    ]
+}
