@@ -1,26 +1,3 @@
-class ChatNames {
-    hiddenChatNames = new Array();
-
-    get = () => {
-        chrome.storage.local.get(["names"])
-            .then(console.log)
-            .catch(console.log);
-    };
-
-    put = () => {
-        let hiddenChatsList = document.querySelector('#hidden-chats');
-
-        this.hiddenChatNames
-            .map((name) => {
-                let li = document.createElement("li");
-                let text = document.createTextNode(name);
-                li.appendChild(text);
-
-                hiddenChatsList?.appendChild(li);
-            })
-    };
-}
-
 class HiddenChatsList {
     
     constructor() {
