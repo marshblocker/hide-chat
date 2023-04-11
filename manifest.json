@@ -19,6 +19,7 @@
             "js": ["scripts/content.js"],
             "matches": [
                 "https://www.messenger.com/",
+                "https://www.messenger.com/t",
                 "https://www.messenger.com/t/*"
             ]
         }
